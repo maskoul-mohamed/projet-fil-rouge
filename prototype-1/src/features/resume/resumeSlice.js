@@ -4,14 +4,21 @@ const initialState = {
     personalInfo: {
         firstName:"",
         lastName:"",
-        postPosition:"",
+        postTitle:"",
         email:"",
+        phone:"",
+        address: "",
+        state:"",
+        city:"",
+        zip:"",
+        image:""
     },
     experiences: [],
     education: [{
         id:1,
         title: "Lorem",
-        description:"Lorem epsum dfjkdshfkjhdskjfhdkjfhhdkjshf"
+        description:"Lorem epsum dfjkdshfkjhdskjfhdkjfhhdkjshf",
+        startDate: null
     }],
     skills:[],
     others:[]
@@ -24,10 +31,13 @@ const resumeSlice = createSlice({
     reducers: {
         addEducation: (state, action) => {
             state.education = action.payload
+        },
+        addPersonalInfo: (state, action) => {
+            state.personalInfo = action.payload
         }
     }
 })
 
 
-export const { addEducation } = resumeSlice.actions;
+export const { addEducation, addPersonalInfo } = resumeSlice.actions;
 export default resumeSlice.reducer

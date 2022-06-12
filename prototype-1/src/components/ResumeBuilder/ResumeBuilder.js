@@ -61,8 +61,8 @@ const ResumeBuilder = () => {
         switch (step) {
           case 0:
             return <PersoInfo />;
-        //   case 1:
-        //     return <PaymentForm />;
+          case 1:
+             return <EducationSection />;
         //   case 2:
         //     return <Review />;
           default:

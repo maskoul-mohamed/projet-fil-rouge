@@ -7,7 +7,7 @@ import MainAppBar from './components/MainAppBar/MainAppBar';
 
 function App() {
   return (
-    <div className="App">
+    <div >
       <MainAppBar />
       <ResumeBuilder />
     </div>
