@@ -32,6 +32,7 @@ const initialState = {
         description:"",
     }],
     skills:[null],
+    profile:"",
     others:[]
 }
 
@@ -52,9 +53,18 @@ const resumeSlice = createSlice({
         addSkills: (state, action) => {
             state.skills = action.payload
         },
+        addProfile: (state, action) => {
+            state.profile = action.payload
+        },
     }
 })
 
 
-export const { addEducation, addPersonalInfo, addExperience,addSkills } = resumeSlice.actions;
+export const { 
+        addEducation, 
+        addPersonalInfo, 
+        addExperience,
+        addSkills,
+        addProfile
+    } = resumeSlice.actions;
 export default resumeSlice.reducer

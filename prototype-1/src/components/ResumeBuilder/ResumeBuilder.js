@@ -20,6 +20,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import ExperienceSection from '../ExperienceSection';
 import SkillsSection from '../SkillsSection';
+import ProfileSection from '../ProfileSection';
 
 const ResumeBuilder = () => {
     const [step, setStep] = useState(1)
@@ -69,6 +70,8 @@ const ResumeBuilder = () => {
             return <ExperienceSection />;
           case 3:
             return <SkillsSection />;
+          case 4:
+            return <ProfileSection />;
           default:
             throw new Error('Unknown step');
         }
