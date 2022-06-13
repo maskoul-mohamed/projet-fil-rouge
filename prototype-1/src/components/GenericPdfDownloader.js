@@ -29,7 +29,7 @@ const GenericPdfDownloader = ({rootElementId , downloadFileName}) => {
             })
     }
 
-    return <Button variant="contained" onClick={downloadPdfDocument}>Download PDF Now</Button>
+    return <Button size='large' variant="contained" onClick={downloadPdfDocument}>Download PDF Now</Button>
 
 }
 

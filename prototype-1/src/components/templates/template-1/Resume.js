@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext} from 'react';
 import './styles.css'
-
+import { format } from 'date-fns'
 const Resume = ({ resume }) => {
 
     
@@ -94,7 +94,8 @@ const Resume = ({ resume }) => {
                         {resume.education.map((item, index) => {
                             return(
                                 <div key={index} className="resume_data">
-                                    <div className="year">2000 - 2010</div>
+                                    <div className="year">
+                                    {item.startDate && format(item.startDate, 'yyyy')} - {item.startDate && format(item.endDate, 'yyyy')}                                    </div>
                                     <div className="content">
                                         <p>{item.title}</p>
                                         <p>{item.description}</p>
@@ -110,7 +111,7 @@ const Resume = ({ resume }) => {
                     <div className="resume_title">Experience</div>
                     <div className="resume_info">
                         <div className="resume_data">
-                            <div className="year">2000 - 2010</div>
+                            <div className="year">2009 - 2010</div>
                             <div className="content">
                                 <p>Title</p>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

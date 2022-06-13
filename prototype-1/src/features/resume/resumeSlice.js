@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    resumeTemplate:1,
     personalInfo: {
         firstName:"",
         lastName:"",

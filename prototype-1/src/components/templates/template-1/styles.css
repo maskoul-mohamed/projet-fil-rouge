@@ -136,7 +136,7 @@ body{
 }
 
 .resume_wrapper .resume_right .resume_data .year{
-	padding-right: 35px;
+	/* padding-right: 35px; */
 	width: 115px;
 	position: relative;
 }

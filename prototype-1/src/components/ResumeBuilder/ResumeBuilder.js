@@ -118,9 +118,24 @@ const ResumeBuilder = () => {
           <>
             {activeStep === steps.length ? (
               <>
-                <Typography variant="h5" gutterBottom sx={{display:"flex", justifyContent:"space-between"}}>
+                <Typography variant="h5" gutterBottom  >
                   Your resume is ready now.
-                  <GenericPdfDownloader    rootElementId={"divToDownload"}/>
+                  <Grid
+                    container
+                    marginTop={'26px'}
+                    marginBottom={'26px'}
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justifyContent="center"
+                   
+                  >
+
+                    <Grid item xs={3}>
+                    <GenericPdfDownloader    rootElementId={"divToDownload"}/>
+                    </Grid>   
+   
+                  </Grid> 
                 </Typography>
                 
                 <Resume resume={resume} />
