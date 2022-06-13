@@ -33,7 +33,10 @@ const initialState = {
     }],
     skills:[null],
     profile:"",
-    others:[]
+    languages:[{
+        language:"",
+        level:""
+    }]
 }
 
 
@@ -56,6 +59,9 @@ const resumeSlice = createSlice({
         addProfile: (state, action) => {
             state.profile = action.payload
         },
+        addLanguages: (state, action) => {
+            state.languages = action.payload
+        },
     }
 })
 
@@ -65,6 +71,7 @@ export const {
         addPersonalInfo, 
         addExperience,
         addSkills,
-        addProfile
+        addProfile,
+        addLanguages
     } = resumeSlice.actions;
 export default resumeSlice.reducer

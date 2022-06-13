@@ -47,7 +47,7 @@ const SkillsSection = ()=> {
     return (     
             <React.Fragment>
               <Typography variant="h6" gutterBottom>
-                Education Section
+                Skills Section
               </Typography>
               <Grid container spacing={3}>
               {skillsList.map((item, index) => {

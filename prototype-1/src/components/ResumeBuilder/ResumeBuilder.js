@@ -21,6 +21,7 @@ import Typography from '@mui/material/Typography';
 import ExperienceSection from '../ExperienceSection';
 import SkillsSection from '../SkillsSection';
 import ProfileSection from '../ProfileSection';
+import LanguagesSection from '../LanguagesSection';
 
 const ResumeBuilder = () => {
     const [step, setStep] = useState(1)
@@ -57,7 +58,7 @@ const ResumeBuilder = () => {
                     'Work Experience',
                     'Skills',
                     'Profile',
-                    'Complete'
+                    'Languages'
                 ];
       
       function getStepContent(step) {
@@ -72,6 +73,8 @@ const ResumeBuilder = () => {
             return <SkillsSection />;
           case 4:
             return <ProfileSection />;
+          case 5:
+            return <LanguagesSection />
           default:
             throw new Error('Unknown step');
         }
