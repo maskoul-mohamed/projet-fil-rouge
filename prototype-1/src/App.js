@@ -4,12 +4,14 @@ import PostsList from './components/PostsList';
 import AddPost from './components/AddPost';
 import ResumeBuilder from './components/ResumeBuilder/ResumeBuilder'
 import MainAppBar from './components/MainAppBar/MainAppBar';
+import PickTemplatePage from './components/PickTemplatePage';
 
 function App() {
   return (
     <div >
       <MainAppBar />
-      <ResumeBuilder />
+      {/* <ResumeBuilder /> */}
+      <PickTemplatePage />
     </div>
   );
 }
