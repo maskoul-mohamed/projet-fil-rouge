@@ -13,12 +13,23 @@ const initialState = {
         zip:"",
         image:""
     },
-    experiences: [],
+    experience: [{
+        jobTitle: "",
+        state: "",
+        employer:"",
+        city:"",
+        startDate: null,
+        endDate:null,
+        description:"",
+    }],
     education: [{
-        id:1,
-        title: "Lorem",
-        description:"Lorem epsum dfjkdshfkjhdskjfhdkjfhhdkjshf",
-        startDate: null
+        schoolName: "",
+        location: "",
+        degree:"",
+        fieldOfStudy:"",
+        startDate: null,
+        endDate:null,
+        description:"",
     }],
     skills:[],
     others:[]
@@ -34,10 +45,13 @@ const resumeSlice = createSlice({
         },
         addPersonalInfo: (state, action) => {
             state.personalInfo = action.payload
+        },
+        addExperience: (state, action) => {
+            state.experience = action.payload
         }
     }
 })
 
 
-export const { addEducation, addPersonalInfo } = resumeSlice.actions;
+export const { addEducation, addPersonalInfo, addExperience } = resumeSlice.actions;
 export default resumeSlice.reducer

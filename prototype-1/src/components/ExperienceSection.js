@@ -11,44 +11,44 @@ import {LocalizationProvider} from '@mui/x-date-pickers';
 import {DatePicker} from '@mui/x-date-pickers';
 
 import TextField from '@mui/material/TextField';import { useSelector, useDispatch } from "react-redux";
-import { addEducation } from "../features/resume/resumeSlice";
+import { addExperience } from "../features/resume/resumeSlice";
 
 
-const EducationSection = ()=> {
-    const getResumeEducation = useSelector(state => state.resume)
-    const [educationList, setEducationList] = useState([...getResumeEducation.education]);
+const ExperienceSection = ()=> {
+    const getResumeExperience = useSelector(state => state.resume)
+    const [experienceList, setExperienceList] = useState([...getResumeExperience.experience]);
     
     const dispatch = useDispatch();
 
     const handleOnChange = (e, index) => {
         const { name, value } = e.target;
-        const old = [...educationList][index];
+        const old = [...experienceList][index];
         const updated = { ...old, [name]: value }
-        let list = [...educationList]
+        let list = [...experienceList]
         list[index] = updated;
-        setEducationList(list);
+        setExperienceList(list);
       };
 
     const handleDateChange = (newValue, name, index)=>{
-        const old = [...educationList][index];
+        const old = [...experienceList][index];
         const updated = { ...old, [name]: newValue }
-        let list = [...educationList]
+        let list = [...experienceList]
         list[index] = updated;
-        setEducationList(list);
+        setExperienceList(list);
     }
 
-  
+   
 
     useEffect(() =>{
-        dispatch(addEducation(educationList))
-    }, [educationList])
+        dispatch(addExperience(experienceList))
+    }, [experienceList])
   
     const onAddBtnClick = () => {
-        setEducationList([...educationList, {
-            schoolName: "",
-            location: "",
-            degree:"",
-            fieldOfStudy:"",
+        setExperienceList([...experienceList, {
+            jobTitle: "",
+            state: "",
+            employer:"",
+            city:"",
             startDate: null,
             endDate:null,
             description:"",
@@ -60,19 +60,19 @@ const EducationSection = ()=> {
     return (     
             <React.Fragment>
               <Typography variant="h6" gutterBottom>
-                Education Section
+                Experience Section
               </Typography>
               <Grid container spacing={3}>
-              {educationList.map((item, index) => {
+              {experienceList.map((item, index) => {
                 return (
                     <React.Fragment  key={index}>
                         <Grid  item xs={12} md={6}>
                         <TextField
                             sx={{ marginTop: "32px"}}
                             required
-                            label="School Name"
-                            name="schoolName"
-                            value={item.schoolName}
+                            label="Job Title"
+                            name="jobTitle"
+                            value={item.jobTitle}
                             variant="standard"
                             onChange={(e) => handleOnChange(e, index)}
                             fullWidth
@@ -83,9 +83,9 @@ const EducationSection = ()=> {
                         <TextField
                             sx={{ marginTop: "32px"}}
                             required
-                            label="School Location"
-                            name="location"
-                            value={item.location}
+                            label="Employer"
+                            name="employer"
+                            value={item.employer}
                             variant="standard"
                             onChange={(e) => handleOnChange(e, index)}
                             fullWidth
@@ -95,27 +95,26 @@ const EducationSection = ()=> {
                         <Grid item xs={12} md={6}>
                         <TextField
                             required
-                            label="Degree"
-                            name="degree"
-                            value={item.title}
-                            variant="standard"
-                            onChange={(e) => handleOnChange(e, index)}
-                            fullWidth
-                            
-                        />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                        <TextField
-                            required
-                            label="Field of Study"
-                            name="fieldOfStudy"
-                            value={item.title}
+                            label="City"
+                            name="city"
+                            value={item.city}
                             variant="standard"
                             onChange={(e) => handleOnChange(e, index)}
                             fullWidth 
                         />
                         </Grid>
-                        
+                        <Grid item xs={12} md={6}>
+                        <TextField
+                            required
+                            label="State"
+                            name="state"
+                            value={item.state}
+                            variant="standard"
+                            onChange={(e) => handleOnChange(e, index)}
+                            fullWidth
+                            
+                        />
+                        </Grid>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <Grid item xs={12} md={6}>
                             <DatePicker
@@ -176,4 +175,4 @@ const EducationSection = ()=> {
     
 }
 
-export default EducationSection;
+export default ExperienceSection;

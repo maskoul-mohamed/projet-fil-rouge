@@ -18,6 +18,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import ExperienceSection from '../ExperienceSection';
 
 const ResumeBuilder = () => {
     const [step, setStep] = useState(1)
@@ -63,8 +64,8 @@ const ResumeBuilder = () => {
             return <PersoInfo />;
           case 1:
              return <EducationSection />;
-        //   case 2:
-        //     return <Review />;
+          case 2:
+            return <ExperienceSection />;
           default:
             throw new Error('Unknown step');
         }
