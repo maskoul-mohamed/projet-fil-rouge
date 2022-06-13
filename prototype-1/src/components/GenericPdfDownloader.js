@@ -1,6 +1,7 @@
 import React from 'react';
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import { Button } from '@mui/material';
 
 const GenericPdfDownloader = ({rootElementId , downloadFileName}) => {
 
@@ -28,7 +29,7 @@ const GenericPdfDownloader = ({rootElementId , downloadFileName}) => {
             })
     }
 
-    return <button onClick={downloadPdfDocument}>Download Pdf</button>
+    return <Button variant="contained" onClick={downloadPdfDocument}>Download PDF Now</Button>
 
 }
 

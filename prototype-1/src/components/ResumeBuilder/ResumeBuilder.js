@@ -60,7 +60,8 @@ const ResumeBuilder = () => {
                     'Skills',
                     'Profile',
                     'Languages',
-                    'Interests'
+                    'Interests',
+                    'Review Your Resume'
                 ];
       
       function getStepContent(step) {
@@ -79,6 +80,8 @@ const ResumeBuilder = () => {
             return <LanguagesSection />
           case 6:
             return <InterestsSection />
+          case 7:
+            return <Resume resume={resume}/>
           default:
             throw new Error('Unknown step');
         }
@@ -115,14 +118,13 @@ const ResumeBuilder = () => {
           <>
             {activeStep === steps.length ? (
               <>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                <Typography variant="h5" gutterBottom sx={{display:"flex", justifyContent:"space-between"}}>
+                  Your resume is ready now.
+                  <GenericPdfDownloader    rootElementId={"divToDownload"}/>
                 </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
-                </Typography>
+                
+                <Resume resume={resume} />
+                
               </>
             ) : (
               <>
@@ -139,7 +141,7 @@ const ResumeBuilder = () => {
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Go To Download' : 'Next'}
                   </Button>
                 </Box>
               </>
