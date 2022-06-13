@@ -22,6 +22,7 @@ import ExperienceSection from '../ExperienceSection';
 import SkillsSection from '../SkillsSection';
 import ProfileSection from '../ProfileSection';
 import LanguagesSection from '../LanguagesSection';
+import InterestsSection from '../InterestsSection';
 
 const ResumeBuilder = () => {
     const [step, setStep] = useState(1)
@@ -58,7 +59,8 @@ const ResumeBuilder = () => {
                     'Work Experience',
                     'Skills',
                     'Profile',
-                    'Languages'
+                    'Languages',
+                    'Interests'
                 ];
       
       function getStepContent(step) {
@@ -75,6 +77,8 @@ const ResumeBuilder = () => {
             return <ProfileSection />;
           case 5:
             return <LanguagesSection />
+          case 6:
+            return <InterestsSection />
           default:
             throw new Error('Unknown step');
         }
