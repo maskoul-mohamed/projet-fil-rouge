@@ -155,7 +155,7 @@ const EducationSection = ()=> {
                         />
                         </Grid>
                        <Grid sx={{ marginTop: "8px", marginBottom:"8px" }} item xs={12}>
-                        <Divider dark={true} />
+                        <Divider />
                        </Grid>
                     </React.Fragment>
                 )
