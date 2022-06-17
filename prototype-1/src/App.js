@@ -5,12 +5,14 @@ import AddPost from './components/AddPost';
 import ResumeBuilder from './components/ResumeBuilder/ResumeBuilder'
 import MainAppBar from './components/MainAppBar/MainAppBar';
 import PickTemplatePage from './components/PickTemplatePage';
+import SignUp from './components/SignUp';
 
 function App() {
   return (
     <div >
       <MainAppBar />
-      <ResumeBuilder />
+      <SignUp />
+      {/* <ResumeBuilder /> */}
       {/* <PickTemplatePage /> */}
     </div>
   );
