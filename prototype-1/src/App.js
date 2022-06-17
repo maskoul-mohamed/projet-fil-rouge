@@ -10,8 +10,8 @@ function App() {
   return (
     <div >
       <MainAppBar />
-      {/* <ResumeBuilder /> */}
-      <PickTemplatePage />
+      <ResumeBuilder />
+      {/* <PickTemplatePage /> */}
     </div>
   );
 }
