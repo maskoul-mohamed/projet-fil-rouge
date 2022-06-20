@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Resume;
 use App\Models\User;
 use App\Models\PersonalInformation;
+use App\Models\Education;
 
 class ResumeController extends Controller
 {
@@ -23,7 +24,11 @@ class ResumeController extends Controller
         
         $respons= [];
         foreach($resumes as $resume){
-            array_push($respons, ["resume" => $resume->resume,"personalInfo"=> $resume->personalInformation]);
+            array_push($respons, [
+                "resume" => $resume->resume,
+                "personalInfo"=> $resume->personalInformation,
+                "education"=> $resume->education,
+            ]);
         }
         // return [
         //     // "resume"=> [$resumes, $resumes[0]->personalInformation],
@@ -66,13 +71,19 @@ class ResumeController extends Controller
                 'zip' => $decodeReq["personalInformation"]["zip"],
                 'image' => $decodeReq["personalInformation"]["image"],                
             ]);
-            // foreach($items as $item){
-            //     $order->items()->create([
-            //         'order_id' => $order->order_id,
-            //         'product_id' => $item->product_id,
-            //         'qty' => $item->qty
-            //     ]);
-            // }
+            foreach($decodeReq["education"] as $item){
+             
+                Education::create([
+                'resumeId' => $resume->id, 
+                'jobTitle' => $item["jobTitle"],
+                'state' => $item["state"],
+                'employer' => $item["employer"],
+                'city' => $item["city"],
+                'startDate' => $item["startDate"],
+                'endDate' => $item["endDate"],
+                'description' => $item["description"],
+                ]);
+            }
         });
     }
 
