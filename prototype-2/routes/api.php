@@ -23,5 +23,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/resumes', [ResumeController::class, "index"]);
     Route::post('/logout', [AuthController::class, "logout"]);
     Route::post('/resume', [ResumeController::class, "store"]);
-
+    Route::put('/resume/{id}', [ResumeController::class, "update"]);
 });
