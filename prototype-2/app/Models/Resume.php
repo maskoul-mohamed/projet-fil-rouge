@@ -47,4 +47,9 @@ class Resume extends Model
     {
         return $this->hasMany(Profile::class,"resumeId");
     }
+
+    public function language()
+    {
+        return $this->hasMany(Language::class,"resumeId");
+    }
 }
