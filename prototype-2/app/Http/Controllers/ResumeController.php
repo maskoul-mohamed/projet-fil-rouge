@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Auth;
 use Illuminate\Http\Request;
+use App\Models\Resume;
+use App\Models\User;
+use App\Models\PersonalInformation;
 
 class ResumeController extends Controller
 {
@@ -13,7 +18,25 @@ class ResumeController extends Controller
      */
     public function index()
     {
-        return 'welcome this is your resume.';
+        $resumes = User::find(Auth::user()->id)->resumes;
+        // $personalInformation = Resume::find($resume[0]->id)->personalInformation;
+        
+        $respons= [];
+        foreach($resumes as $resume){
+            array_push($respons, ["resume" => $resume->resume,"personalInfo"=> $resume->personalInformation]);
+        }
+        // return [
+        //     // "resume"=> [$resumes, $resumes[0]->personalInformation],
+        //     // "personalInformation"=> $personalInformation,
+            
+        // ];
+        return $respons;
+        // $result = User::with("resumes", "personalInformation")
+        //             ->whereId(Auth::user()->id)
+        //             ->whereHas("resumes")
+        //             ->whereHas("personalInformation")
+        //             ->get();
+        // return $result;
     }
 
     /**
@@ -24,7 +47,33 @@ class ResumeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $decodeReq = json_decode($request->getContent(), true);
+        DB::transaction(function () use ($decodeReq) {
+            $resume = Resume::create([
+                'userId' => Auth::user()->id,
+                'templateName' => $decodeReq["resume"]["templateName"],
+            ]);
+            $personalInformation = PersonalInformation::create([
+                'resumeId' => $resume->id, 
+                'firstName' => $decodeReq["personalInformation"]["firstName"],
+                'lastName' => $decodeReq["personalInformation"]["lastName"],
+                'postTitle' => $decodeReq["personalInformation"]["postTitle"],
+                'email' => $decodeReq["personalInformation"]["email"],
+                'phone' => $decodeReq["personalInformation"]["phone"],
+                'address' => $decodeReq["personalInformation"]["address"],
+                'state' => $decodeReq["personalInformation"]["state"],
+                'city' => $decodeReq["personalInformation"]["city"],
+                'zip' => $decodeReq["personalInformation"]["zip"],
+                'image' => $decodeReq["personalInformation"]["image"],                
+            ]);
+            // foreach($items as $item){
+            //     $order->items()->create([
+            //         'order_id' => $order->order_id,
+            //         'product_id' => $item->product_id,
+            //         'qty' => $item->qty
+            //     ]);
+            // }
+        });
     }
 
     /**
