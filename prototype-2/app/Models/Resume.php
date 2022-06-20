@@ -42,4 +42,9 @@ class Resume extends Model
     {
         return $this->hasMany(Skill::class,"resumeId");
     }
+
+    public function profile()
+    {
+        return $this->hasMany(Profile::class,"resumeId");
+    }
 }

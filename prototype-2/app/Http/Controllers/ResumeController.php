@@ -11,6 +11,7 @@ use App\Models\PersonalInformation;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Skill;
+use App\Models\Profile;
 
 class ResumeController extends Controller
 {
@@ -32,6 +33,7 @@ class ResumeController extends Controller
                 "education"=> $resume->education,
                 "experience"=> $resume->experience,
                 "skill"=> $resume->skill,
+                "profile"=> $resume->profile,
             ]);
         }
         // return [
@@ -109,6 +111,13 @@ class ResumeController extends Controller
                 'name' => $item,
                 ]);
             }
+             
+           
+            Profile::create([
+                'resumeId' => $resume->id, 
+                'description' => $decodeReq['profile'],
+                ]);
+            
         });
     }
 
