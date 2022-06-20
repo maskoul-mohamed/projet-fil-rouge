@@ -9,6 +9,7 @@ use App\Models\Resume;
 use App\Models\User;
 use App\Models\PersonalInformation;
 use App\Models\Education;
+use App\Models\Experience;
 
 class ResumeController extends Controller
 {
@@ -28,6 +29,7 @@ class ResumeController extends Controller
                 "resume" => $resume->resume,
                 "personalInfo"=> $resume->personalInformation,
                 "education"=> $resume->education,
+                "experience"=> $resume->experience,
             ]);
         }
         // return [
@@ -71,14 +73,27 @@ class ResumeController extends Controller
                 'zip' => $decodeReq["personalInformation"]["zip"],
                 'image' => $decodeReq["personalInformation"]["image"],                
             ]);
-            foreach($decodeReq["education"] as $item){
+            foreach($decodeReq["experience"] as $item){
              
-                Education::create([
+                Experience::create([
                 'resumeId' => $resume->id, 
                 'jobTitle' => $item["jobTitle"],
                 'state' => $item["state"],
                 'employer' => $item["employer"],
                 'city' => $item["city"],
+                'startDate' => $item["startDate"],
+                'endDate' => $item["endDate"],
+                'description' => $item["description"],
+                ]);
+            }
+
+            foreach($decodeReq["education"] as $item){
+                Education::create([
+                'resumeId' => $resume->id, 
+                'schoolName' => $item["schoolName"],
+                'location' => $item["location"],
+                'degree' => $item["degree"],
+                'fieldOfStudy' => $item["fieldOfStudy"],
                 'startDate' => $item["startDate"],
                 'endDate' => $item["endDate"],
                 'description' => $item["description"],
