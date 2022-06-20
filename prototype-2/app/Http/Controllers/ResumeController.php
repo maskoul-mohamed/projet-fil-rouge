@@ -13,6 +13,7 @@ use App\Models\Experience;
 use App\Models\Skill;
 use App\Models\Profile;
 use App\Models\Language;
+use App\Models\Interest;
 
 class ResumeController extends Controller
 {
@@ -36,6 +37,7 @@ class ResumeController extends Controller
                 "skill"=> $resume->skill,
                 "profile"=> $resume->profile,
                 "language"=> $resume->language,
+                "interest"=> $resume->interest,
             ]);
         }
         // return [
@@ -113,7 +115,12 @@ class ResumeController extends Controller
                 'name' => $item,
                 ]);
             }
-             
+            foreach($decodeReq["interests"] as $item){
+                Interest::create([
+                'resumeId' => $resume->id, 
+                'name' => $item,
+                ]);
+            }
             
             Profile::create([
                 'resumeId' => $resume->id, 

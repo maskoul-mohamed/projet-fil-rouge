@@ -52,4 +52,9 @@ class Resume extends Model
     {
         return $this->hasMany(Language::class,"resumeId");
     }
+
+    public function interest()
+    {
+        return $this->hasMany(Interest::class,"resumeId");
+    }
 }
