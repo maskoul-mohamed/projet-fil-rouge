@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\PersonalInformation;
 use App\Models\Education;
 use App\Models\Experience;
+use App\Models\Skill;
 
 class ResumeController extends Controller
 {
@@ -30,6 +31,7 @@ class ResumeController extends Controller
                 "personalInfo"=> $resume->personalInformation,
                 "education"=> $resume->education,
                 "experience"=> $resume->experience,
+                "skill"=> $resume->skill,
             ]);
         }
         // return [
@@ -97,6 +99,14 @@ class ResumeController extends Controller
                 'startDate' => $item["startDate"],
                 'endDate' => $item["endDate"],
                 'description' => $item["description"],
+                ]);
+            }
+
+            
+            foreach($decodeReq["skill"] as $item){
+                Skill::create([
+                'resumeId' => $resume->id, 
+                'name' => $item,
                 ]);
             }
         });

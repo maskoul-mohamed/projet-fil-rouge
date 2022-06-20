@@ -38,4 +38,8 @@ class Resume extends Model
     {
         return $this->hasMany(Experience::class,"resumeId");
     }
+    public function skill()
+    {
+        return $this->hasMany(Skill::class,"resumeId");
+    }
 }

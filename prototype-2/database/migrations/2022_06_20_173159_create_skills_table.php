@@ -13,21 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('experiences', function (Blueprint $table) {
-            $table->id();
+        Schema::create('skills', function (Blueprint $table) {
+            $table->id(); 
             $table->unsignedBigInteger("resumeId");
-            $table->string("jobTitle");
-            $table->string("state");
-            $table->string("employer");
-            $table->string("city");
-            $table->string("startDate");
-            $table->string("endDate");
-            $table->string("description");
+            $table->string("name");
             $table->timestamps();
             $table->foreign("resumeId")
-                ->references("id")
-                ->on("resumes")
-                ->onDelete("cascade");
+            ->references("id")
+            ->on("resumes")
+            ->onDelete("cascade");
         });
     }
 
@@ -38,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('experiences');
+        Schema::dropIfExists('skills');
     }
 };
