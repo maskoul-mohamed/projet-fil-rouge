@@ -13,8 +13,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useTheme } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 const pages = ['My Resumes', 'Create', 'Log in', 'Sing Up'];
+const links =["/resumes", "/create", "/login", "/register"];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const MainAppBar = () => {
@@ -115,14 +117,16 @@ const MainAppBar = () => {
             CV BUILDER
           </Typography>
           <Box sx={{  display: { xs: 'none', md: 'flex', } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: theme.palette.primary.main , display: 'block' }}
-              >
-                {page}
-              </Button>
+            {pages.map((page, index) => (
+              <Link style={{textDecoration: "none"}} to={links[index]} key={page}>
+                <Button
+                  
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: theme.palette.primary.main , display: 'block' }}
+                >
+                  {page}
+                </Button>
+              </Link>
             ))}
           </Box>
 
