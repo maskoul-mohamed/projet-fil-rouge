@@ -12,11 +12,15 @@ const register = (name, email, password) => {
     withCredentials: true
   });
 };
-const login = (name, password) => {
+const login = (email, password) => {
   return axios
     .post(API_URL + "login", {
-        name,
+      email,
       password,
+    },
+    { 
+      xsrfHeaderName: "X-XSRF-TOKEN", // change the name of the header to "X-XSRF-TOKEN" and it should works
+      withCredentials: true
     })
     .then((response) => {
       if (response.data.token) {
