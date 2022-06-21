@@ -11,6 +11,11 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { register,  } from "../features/auth/authSlice";
+import { clearMessage } from "../features/message/messageSlice";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -26,14 +31,41 @@ function Copyright(props) {
 }
 
 
-const  SignUp = () => {
+const  SignUp = (props) => {
+  const [successful, setSuccessful] = useState(false);
+  const { message } = useSelector((state) => state.message);
+
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+  
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+   
+   
+    setSuccessful(false);
+    dispatch(register({
+      "name": data.get('name'),
+      "email": data.get('email'),
+      "password": data.get('password'),
+    }))
+      .unwrap()
+      .then(() => {
+        navigate("/home");
+        setSuccessful(true);
+        
+        console.log(props)
+      })
+      .catch(() => {
+        setSuccessful(false);
+      });
   };
 
   return (
@@ -56,6 +88,16 @@ const  SignUp = () => {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
+            <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  name="name"
+                  autoComplete="username"
+                />
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -72,17 +114,6 @@ const  SignUp = () => {
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="confirmPassword"
-                  label="Confirm Password"
                   type="password"
                   id="password"
                   autoComplete="new-password"
@@ -106,6 +137,16 @@ const  SignUp = () => {
             </Grid>
           </Box>
         </Box>
+        {message && (
+        <div className="form-group">
+          <div
+            className={successful ? "alert alert-success" : "alert alert-danger"}
+            role="alert"
+          >
+            {message}
+          </div>
+        </div>
+      )}
         <Copyright sx={{ mt: 5 }} />
       </Container>
   );

@@ -6,15 +6,24 @@ import ResumeBuilder from './components/ResumeBuilder/ResumeBuilder'
 import MainAppBar from './components/MainAppBar/MainAppBar';
 import PickTemplatePage from './components/PickTemplatePage';
 import SignUp from './components/SignUp';
+import { BrowserRouter as Router, Routes , Route, Link } from "react-router-dom";
 
 function App() {
   return (
+      <Router>
     <div >
+
       <MainAppBar />
-      <SignUp />
-      {/* <ResumeBuilder /> */}
-      {/* <PickTemplatePage /> */}
+      <Routes >
+        <Route exact path="/register" element={<SignUp/>} />
+        <Route exact path="/home" element={<div>hollaa</div>} />
+        
+        {/* <ResumeBuilder /> */}
+        {/* <PickTemplatePage /> */}
+      </Routes >
     </div>
+    </Router>
+
   );
 }
 
