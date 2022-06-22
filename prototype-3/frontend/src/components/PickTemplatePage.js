@@ -4,6 +4,7 @@ import {template1} from './../assets/images/template1.png';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import {  useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 
 const PickTemplatePage = () => {
@@ -29,16 +30,17 @@ const PickTemplatePage = () => {
                     spacing={0}
                    
                   >
-
+                    <Link to="/create">
                     <Grid item xs={3}>
                         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-
+                        
                         <img src={require('./../assets/images/template1.png')} 
-                        style={{width:"200px"}} />
+                        style={{width:"100%"}} />
                     </Paper>
 
                 
-                    </Grid>   
+                    </Grid>  
+                    </Link> 
                   </Grid> 
             </Container>
 

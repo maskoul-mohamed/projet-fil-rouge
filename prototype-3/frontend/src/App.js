@@ -24,7 +24,7 @@ function App() {
 
         <Route exact path="/home" element={<div>hollaa</div>} />
         <Route exact path="/create" element={<ResumeBuilder /> } />
-        {/* <Route exact path="/create" element={<PickTemplatePage /> } /> */}
+         <Route exact path="/resume" element={<PickTemplatePage /> } /> 
         
         
 
