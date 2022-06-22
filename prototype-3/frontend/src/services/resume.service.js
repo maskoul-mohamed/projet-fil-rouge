@@ -1,40 +1,20 @@
 import axios from "axios";
+import authHeader from "./auth-header";
+
 const API_URL = "http://127.0.0.1:8000/api/";
-const register = (name, email, password) => {
-  
+const addResume = (resume) => {
+  console.log(resume)
      
-  return axios.post(API_URL + "register", {
-    name,
-    email,
-    password,
+  return axios.post(API_URL + "resume", {
+    ...resume
   }, { 
-    xsrfHeaderName: "X-XSRF-TOKEN", // change the name of the header to "X-XSRF-TOKEN" and it should works
+    headers: {... authHeader(), "Content-Type": "application/json" },
+    xsrfHeaderName: "X-XSRF-TOKEN",
     withCredentials: true
   });
 };
-const login = (email, password) => {
-  return axios
-    .post(API_URL + "login", {
-      email,
-      password,
-    },
-    { 
-      xsrfHeaderName: "X-XSRF-TOKEN", // change the name of the header to "X-XSRF-TOKEN" and it should works
-      withCredentials: true
-    })
-    .then((response) => {
-      if (response.data.token) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-      }
-      return response.data;
-    });
+
+const resumeService = {
+  addResume,
 };
-const logout = () => {
-  localStorage.removeItem("user");
-};
-const authService = {
-  register,
-  login,
-  logout,
-};
-export default authService;
+export default resumeService;
