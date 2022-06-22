@@ -1,11 +1,20 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import { Container } from "@mui/system"
 import {template1} from './../assets/images/template1.png';
-
+import { useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import {  useEffect } from 'react';
 
 
 const PickTemplatePage = () => {
-
+    let navigate = useNavigate();
+    useEffect(() => {
+      if (!currentUser) {
+        return navigate("/login");
+      }
+    }, [])
+  
+    const { user: currentUser } = useSelector((state) => state.auth);
 
     return(
         <>

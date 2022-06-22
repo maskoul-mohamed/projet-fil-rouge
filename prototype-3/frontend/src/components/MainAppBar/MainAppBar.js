@@ -14,14 +14,18 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useTheme } from '@mui/system';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 const pages = ['My Resumes', 'Create', 'Log in', 'Sing Up'];
 const links =["/resumes", "/create", "/login", "/register"];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Account', 'Logout'];
 
 const MainAppBar = () => {
   const theme = useTheme();
 
+
+  const { user: currentUser } = useSelector((state) => state.auth);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -91,11 +95,18 @@ const MainAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" sx={{ color: theme.palette.primary.main }}>{page}</Typography>
+               <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" sx={{ color: theme.palette.primary.main }}>My Resumes</Typography>
                 </MenuItem>
-              ))}
+                <MenuItem  onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" sx={{ color: theme.palette.primary.main }}>Create</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" sx={{ color: theme.palette.primary.main }}>Log in</Typography>
+                </MenuItem>
+                <MenuItem  onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" sx={{ color: theme.palette.primary.main }}>Sing Up</Typography>
+                </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -117,17 +128,55 @@ const MainAppBar = () => {
             CV BUILDER
           </Typography>
           <Box sx={{  display: { xs: 'none', md: 'flex', } }}>
-            {pages.map((page, index) => (
-              <Link style={{textDecoration: "none"}} to={links[index]} key={page}>
+          <Link style={{textDecoration: "none"}} to={"resumes"}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: theme.palette.primary.main , display: 'block' }}
+                >
+                  My Resumes
+                </Button>
+              </Link>
+              <Link style={{textDecoration: "none"}} to={"/create"} >
                 <Button
                   
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: theme.palette.primary.main , display: 'block' }}
                 >
-                  {page}
+                  Create
                 </Button>
               </Link>
-            ))}
+              {!currentUser &&
+              <Link style={{textDecoration: "none"}} to={"/login"} >
+                <Button
+                  
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: theme.palette.primary.main , display: 'block' }}
+                >
+                  Log in
+                </Button>
+              </Link>
+              }
+              {!currentUser &&
+              <Link style={{textDecoration: "none"}} to={"/register"}>
+                <Button
+                  
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: theme.palette.primary.main , display: 'block' }}
+                >
+                  Sing Up
+                </Button>
+              </Link>}
+              {currentUser &&
+              <Link style={{textDecoration: "none"}} to={"/register"}>
+                <Button
+                  
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: theme.palette.primary.main , display: 'block' }}
+                >
+                  Logout
+                </Button>
+              </Link>}
+              
           </Box>
 
         
