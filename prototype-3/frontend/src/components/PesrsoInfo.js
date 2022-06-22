@@ -13,7 +13,7 @@ import { addPersonalInfo } from '../features/resume/resumeSlice';
 
 export default function PersoInfo() {
   const refs = React.createRef()
-  const getPersonalInfo = useSelector(state => state.resume.personalInfo)
+  const getPersonalInfo = useSelector(state => state.resume.personalInformation)
   const [personalInfo, setPersonalInfo] = useState({...getPersonalInfo});
   
   const dispatch = useDispatch();

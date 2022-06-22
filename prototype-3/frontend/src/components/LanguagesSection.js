@@ -59,8 +59,8 @@ const LanguagesSection = ()=> {
                                 sx={{ marginTop: "32px"}}
                                 required
                                 label="Language"
-                                name="language"
-                                value={item.language}
+                                name="name"
+                                value={item.name}
                                 variant="standard"
                                 onChange={(e) => handleOnChange(e, index)}
                                 fullWidth

@@ -24,6 +24,7 @@ import SkillsSection from '../SkillsSection';
 import ProfileSection from '../ProfileSection';
 import LanguagesSection from '../LanguagesSection';
 import InterestsSection from '../InterestsSection';
+import { addResume } from '../../features/resume/resumeSlice';
 
 
 const ResumeBuilder = () => {
@@ -94,11 +95,19 @@ const ResumeBuilder = () => {
       
       
         const [activeStep, setActiveStep] = useState(0);
-      
         const handleNext = () => {
           setActiveStep(activeStep + 1);
         };
-      
+        const savetoServer = () => {
+          setActiveStep(activeStep + 1);
+
+          dispatch(addResume(resume))
+            .unwrap()
+            .then(() => {
+            })
+            .catch(() => {
+            });
+        };
         const handleBack = () => {
           setActiveStep(activeStep - 1);
         };
@@ -160,7 +169,8 @@ const ResumeBuilder = () => {
 
                   <Button
                     variant="contained"
-                    onClick={handleNext}
+                    onClick={activeStep === steps.length - 1 ? savetoServer :handleNext}
+                    
                     sx={{ mt: 3, ml: 1 }}
                   >
                     {activeStep === steps.length - 1 ? 'Go To Download' : 'Next'}

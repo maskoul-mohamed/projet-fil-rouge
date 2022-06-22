@@ -1,8 +1,31 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import resumeService from "../../services/resume.service";
+import { setMessage } from "../message/messageSlice";
+
+export const addResume = createAsyncThunk(
+    "resume/add",
+    async ( resume, thunkAPI) => {
+      try {
+        const data = await resumeService.addResume(resume);
+        return { resume: data };
+      } catch (error) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        thunkAPI.dispatch(setMessage(message));
+        return thunkAPI.rejectWithValue();
+      }
+    }
+  );
 
 const initialState = {
-    resumeTemplate:1,
-    personalInfo: {
+    resume: {
+        templateName:'template1'
+    },
+    personalInformation: {
         firstName:"",
         lastName:"",
         postTitle:"",
@@ -35,7 +58,7 @@ const initialState = {
     skills:[null],
     profile:"",
     languages:[{
-        language:"",
+        name:"",
         level:""
     }],
     interests:[null]
@@ -50,7 +73,7 @@ const resumeSlice = createSlice({
             state.education = action.payload
         },
         addPersonalInfo: (state, action) => {
-            state.personalInfo = action.payload
+            state.personalInformation = action.payload
         },
         addExperience: (state, action) => {
             state.experience = action.payload
