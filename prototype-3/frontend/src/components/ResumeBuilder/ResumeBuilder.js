@@ -4,6 +4,7 @@ import PersonalInfoForm from '../PersonalInfoForm';
 import Resume from '../templates/template-1/Resume';
 import GenericPdfDownloader from '../GenericPdfDownloader'
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import './resumeBuilder.css';
 import PersoInfo from '../PesrsoInfo';
 
@@ -24,22 +25,26 @@ import ProfileSection from '../ProfileSection';
 import LanguagesSection from '../LanguagesSection';
 import InterestsSection from '../InterestsSection';
 
+
 const ResumeBuilder = () => {
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (!currentUser) {
+      return navigate("/login");
+    }
+  }, [])
+
+  const { user: currentUser } = useSelector((state) => state.auth);
+  
+
     const [step, setStep] = useState(1)
     
     const dispatch = useDispatch();
 
+
     const resume = useSelector(state => state.resume)
-    const nextStep =() => {
-        setStep(step + 1)
 
-        console.log(step)
-    }
-    const prevStep =() => {
-        setStep(step - 1)
-
-        console.log(step)
-    }
+    
   
     function Copyright() {
         return (
@@ -98,6 +103,8 @@ const ResumeBuilder = () => {
           setActiveStep(activeStep - 1);
         };
       
+ 
+    
   return (
       <>
       <CssBaseline />
