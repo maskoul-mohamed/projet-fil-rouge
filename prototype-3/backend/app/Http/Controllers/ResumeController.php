@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Storage;
 use DB;
 use Auth;
 use Illuminate\Http\Request;
@@ -14,6 +15,9 @@ use App\Models\Skill;
 use App\Models\Profile;
 use App\Models\Language;
 use App\Models\Interest;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
+
 
 class ResumeController extends Controller
 {
@@ -27,11 +31,14 @@ class ResumeController extends Controller
         $resumes = User::find(Auth::user()->id)->resumes;
         // $personalInformation = Resume::find($resume[0]->id)->personalInformation;
         
+        $path= storage_path('images');
         $respons= [];
         foreach($resumes as $resume){
             array_push($respons, [
                 "resume" => $resume,
-                "personalInfo"=> $resume->personalInformation,
+                "personalInfo"=> [
+                    $resume->personalInformation, 
+                    "image" => base64_encode(File::get($path . $resume->personalInformation->image))],
                 "education"=> $resume->education,
                 "experience"=> $resume->experience,
                 "skill"=> $resume->skill,
@@ -64,10 +71,40 @@ class ResumeController extends Controller
     {
         $decodeReq = json_decode($request->getContent(), true);
         DB::transaction(function () use ($decodeReq) {
-            $resume = Resume::create([
-                'userId' => Auth::user()->id,
-                'templateName' => $decodeReq["resume"]["templateName"],
-            ]);
+            // $resume = Resume::create([
+            //     'userId' => Auth::user()->id,
+            //     'templateName' => $decodeReq["resume"]["templateName"],
+            // ]);
+            
+            // $fileName;
+            // $image = json_decode($request['image']);
+            // return response([$image, "dfdfds"]);
+            // $fileName = str_random(6) . time()  ;
+
+            // $destinationPath = storage_path('images');
+
+            //  Storage::disk($destinationPath)->put($fileName, base64_decode($image));
+            // $image->move($destinationPath, $fileName);
+            // $img = Image::make($image);
+            // $img->resize(150, 150, function ($constraint) 
+            //  {
+            //     $constraint->aspectRatio();
+            //  })->save($destinationPath.'/'.$fileName);
+            //  $destinationPath = storage_path('images');
+            //  Image::make($image)->save($destinationPath.'/'.$fileName);
+                // $image =  $decodeReq->file('image');
+            // if($decodeReq->hasFile('image')) {
+            //      $image = $decodeReq->file('image');
+            //      $destinationPath = storage_path('images');
+            //      $fileName = str_random(6) . time() . "." . $image->getClientOriginalExtension();
+            //      $image->move($destinationPath, $fileName);
+            //     return response($fileName);
+            // } else {
+            //     $image = "none";
+            //     $fileName = "none";
+                
+            // }
+    
             $personalInformation = PersonalInformation::create([
                 'resumeId' => $resume->id, 
                 'firstName' => $decodeReq["personalInformation"]["firstName"],

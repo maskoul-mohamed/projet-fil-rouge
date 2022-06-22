@@ -24,7 +24,8 @@ const GenericPdfDownloader = ({rootElementId , downloadFileName}) => {
 
                 let width = pdf.internal.pageSize.getWidth();
                 let height = pdf.internal.pageSize.getHeight();
-                pdf.addImage(imgData, 'PNG', 0, 0, width, height);
+                console.log(height)
+                pdf.addImage(imgData, 'PNG', 0, 0, width, height- 50);
                 pdf.save(`${downloadFileName}.pdf`);
             })
     }
