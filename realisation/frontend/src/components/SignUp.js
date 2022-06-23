@@ -58,7 +58,7 @@ const  SignUp = (props) => {
     }))
       .unwrap()
       .then(() => {
-        navigate("/home");
+        navigate("/login");
         setSuccessful(true);
         
         console.log(props)

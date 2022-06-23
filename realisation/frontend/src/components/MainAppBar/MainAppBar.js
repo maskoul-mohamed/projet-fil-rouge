@@ -77,7 +77,7 @@ const MainAppBar = () => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              sx={{color: theme.palette.primary.main}}
             >
               <MenuIcon />
             </IconButton>
