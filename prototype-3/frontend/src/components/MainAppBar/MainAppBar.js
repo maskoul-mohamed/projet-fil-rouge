@@ -136,7 +136,7 @@ const MainAppBar = () => {
                   My Resumes
                 </Button>
               </Link>
-              <Link style={{textDecoration: "none"}} to={"/create"} >
+              <Link style={{textDecoration: "none"}} to={"/resume"} >
                 <Button
                   
                   onClick={handleCloseNavMenu}
