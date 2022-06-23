@@ -5,6 +5,7 @@ import resumeSlice from "../features/resume/resumeSlice";
 import usersSlice from "../features/users/usersSlice";
 import authSlice from "../features/auth/authSlice";
 import messageSlice from "../features/message/messageSlice";
+import resumesSlice from "../features/resumes/resumesSlice";
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
         users: usersSlice,
         resume: resumeSlice,
         auth: authSlice,
-        message: messageSlice
+        message: messageSlice,
+        resumes: resumesSlice
     }
 })

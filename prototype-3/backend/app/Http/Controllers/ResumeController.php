@@ -36,9 +36,8 @@ class ResumeController extends Controller
         foreach($resumes as $resume){
             array_push($respons, [
                 "resume" => $resume,
-                "personalInfo"=> [
-                    $resume->personalInformation, 
-                    "image" => base64_encode(File::get($path . $resume->personalInformation->image))],
+                "personalInfo"=>$resume->personalInformation, 
+                    
                 "education"=> $resume->education,
                 "experience"=> $resume->experience,
                 "skill"=> $resume->skill,

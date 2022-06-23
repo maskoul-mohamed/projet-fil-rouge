@@ -9,6 +9,7 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import { BrowserRouter as Router, Routes , Route, } from "react-router-dom";
 import Home from './components/Home';
+import Resumes from './components/Resumes';
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
 
         <Route exact path="/home" element={<div>hollaa</div>} />
         <Route exact path="/create" element={<ResumeBuilder /> } />
-         <Route exact path="/resume" element={<PickTemplatePage /> } /> 
+        <Route exact path="/resume" element={<PickTemplatePage /> } /> 
+        <Route exact path="/resumes" element={<Resumes /> } /> 
         
         
 

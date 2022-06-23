@@ -21,6 +21,26 @@ export const addResume = createAsyncThunk(
     }
   );
 
+  export const getResumes = createAsyncThunk(
+    "resumes/get",
+    async ( thunkAPI) => {
+      try {
+        const data = await resumeService.getResumes();
+        console.log(data)
+
+        return { resume: data };
+      } catch (error) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        thunkAPI.dispatch(setMessage(message));
+        return thunkAPI.rejectWithValue();
+      }
+    }
+  );
 const initialState = {
     resume: {
         templateName:'template1'
@@ -90,6 +110,7 @@ const resumeSlice = createSlice({
         addInterests: (state, action) => {
             state.interests = action.payload
         },
+        
     }
 })
 

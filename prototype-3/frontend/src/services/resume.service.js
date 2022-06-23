@@ -14,7 +14,15 @@ const addResume = (resume) => {
   });
 };
 
+
+const getResumes = () => {
+     
+  return axios.get(API_URL + "resume", { 
+    headers: authHeader()
+  });
+};
 const resumeService = {
   addResume,
+  getResumes
 };
 export default resumeService;

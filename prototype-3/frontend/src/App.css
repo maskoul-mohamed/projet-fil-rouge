@@ -2,6 +2,11 @@
   
 }
 
+.resumes {
+  transform: scale(0.5);
+    transform-origin: 0% 0% 0px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
