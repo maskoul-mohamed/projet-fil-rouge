@@ -14,8 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useTheme } from '@mui/system';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
+import { useSelector,useDispatch } from 'react-redux';
+import { logout } from '../../features/auth/authSlice';
 
 const pages = ['My Resumes', 'Create', 'Log in', 'Sing Up'];
 const links =["/resumes", "/create", "/login", "/register"];
@@ -23,12 +23,16 @@ const settings = ['Account', 'Logout'];
 
 const MainAppBar = () => {
   const theme = useTheme();
+  const dispatch = useDispatch();
 
 
   const { user: currentUser } = useSelector((state) => state.auth);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
+  const handleLogout= () => {
+    dispatch(logout())
+  }
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -167,15 +171,15 @@ const MainAppBar = () => {
                 </Button>
               </Link>}
               {currentUser &&
-              <Link style={{textDecoration: "none"}} to={"/register"}>
+              
                 <Button
                   
-                  onClick={handleCloseNavMenu}
+                  onClick={handleLogout}
                   sx={{ my: 2, color: theme.palette.primary.main , display: 'block' }}
                 >
                   Logout
                 </Button>
-              </Link>}
+             }
               
           </Box>
 

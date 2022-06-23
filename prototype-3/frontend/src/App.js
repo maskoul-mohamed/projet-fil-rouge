@@ -23,7 +23,6 @@ function App() {
         <Route exact path="/register" element={<SignUp/>} />
         <Route exact path="/login" element={<SignIn />} />
 
-        <Route exact path="/home" element={<div>hollaa</div>} />
         <Route exact path="/create" element={<ResumeBuilder /> } />
         <Route exact path="/resume" element={<PickTemplatePage /> } /> 
         <Route exact path="/resumes" element={<Resumes /> } /> 

@@ -57,7 +57,7 @@ export default function SignIn() {
     }))
       .unwrap()
       .then(() => {
-        navigate("/home");
+        navigate("/resume");
       })
       .catch(() => {
       });
