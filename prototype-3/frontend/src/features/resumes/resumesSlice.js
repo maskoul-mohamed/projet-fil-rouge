@@ -44,7 +44,7 @@ export const addResume = createAsyncThunk(
 const initialState = { resumes:[]}
 
 
-const resumeSlice = createSlice({
+const resumesSlice = createSlice({
     name: "resumes",
     initialState,
     reducers: {
